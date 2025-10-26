@@ -7,11 +7,12 @@
   <style>
     body {
       margin: 0;
-      background-color: transparent; /* Fondo exterior transparente */
+      padding: 0;
+      background: none; /* 🔹 sin color ni fondo */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: auto; /* evita cubrir todo el alto */
     }
 
     .figura {
@@ -20,8 +21,9 @@
       position: relative;
       border-radius: 25px;
       overflow: hidden;
-      background-color: #b30000; /* 🔴 Rojo solo dentro del rectángulo */
+      background-color: #b30000; /* 🔴 solo dentro del rectángulo */
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      margin: 0 auto;
     }
 
     .figura img {
