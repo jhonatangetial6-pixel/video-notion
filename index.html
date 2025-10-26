@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Notion</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      height: 100%;
-      overflow: hidden;
-    }
-    iframe {
-      width: 100vw;
-      height: 100vh;
-      border: none;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video con sonido</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <iframe
-    src="https://www.youtube.com/embed/tW71_mf0A10?autoplay=1&loop=1&playlist=tW71_mf0A10&controls=0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
+  <iframe
+    id="video"
+    src="https://www.youtube.com/embed/tW71_mf0A10?autoplay=1&mute=1&loop=1&playlist=tW71_mf0A10&controls=0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+
+  <script>
+    // Al primer clic o movimiento del usuario, activamos el sonido
+    const video = document.getElementById('video');
+    const unmute = () => {
+      video.src = "https://www.youtube.com/embed/tW71_mf0A10?autoplay=1&mute=0&loop=1&playlist=tW71_mf0A10&controls=0";
+      document.removeEventListener('click', unmute);
+      document.removeEventListener('mousemove', unmute);
+    };
+
+    document.addEventListener('click', unmute);
+    document.addEventListener('mousemove', unmute);
+  </script>
 </body>
 </html>
