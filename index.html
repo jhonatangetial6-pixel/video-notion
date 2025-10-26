@@ -1,56 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rectángulo azul con imágenes</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: none; /* 🔹 fondo exterior transparente */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: auto; /* no cubre toda la pantalla */
-    }
-
-    .figura {
-      width: 300px;
-      height: 450px;
-      position: relative;
-      border-radius: 25px;
-      overflow: hidden;
-      background-color: #001a66; /* 🔵 azul oscuro solo dentro */
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-      margin: 0 auto;
-    }
-
-    .figura img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
-      animation: cambio 15s infinite;
-    }
-
-    .figura img:nth-child(1) { animation-delay: 0s; }
-    .figura img:nth-child(2) { animation-delay: 5s; }
-    .figura img:nth-child(3) { animation-delay: 10s; }
-
-    @keyframes cambio {
-      0%, 33% { opacity: 1; }
-      40%, 100% { opacity: 0; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Notion</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="figura">
-    <img src="https://raw.githubusercontent.com/jhonatangetial6-pixel/video-notion/main/20250210_100108.png" alt="Imagen 1">
-    <img src="https://raw.githubusercontent.com/jhonatangetial6-pixel/video-notion/main/20250307_110421.png" alt="Imagen 2">
-    <img src="https://raw.githubusercontent.com/jhonatangetial6-pixel/video-notion/main/20250519_161033.png" alt="Imagen 3">
-  </div>
+  <iframe
+    src="https://www.youtube.com/embed/tW71_mf0A10?autoplay=1&loop=1&playlist=tW71_mf0A10&controls=0&mute=1"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
 </body>
 </html>
