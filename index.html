@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rectángulo rojo con imágenes</title>
+  <title>Rectángulo azul con imágenes</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: none; /* 🔹 sin color ni fondo */
+      background: none; /* 🔹 fondo exterior transparente */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: auto; /* evita cubrir todo el alto */
+      height: auto; /* no cubre toda la pantalla */
     }
 
     .figura {
@@ -21,7 +21,7 @@
       position: relative;
       border-radius: 25px;
       overflow: hidden;
-      background-color: #b30000; /* 🔴 solo dentro del rectángulo */
+      background-color: #001a66; /* 🔵 azul oscuro solo dentro */
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
       margin: 0 auto;
     }
