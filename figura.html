@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Figura rectangular animada</title>
+  <title>Rectángulo azul con imágenes</title>
   <style>
     body {
       margin: 0;
-      background-color: #ff0000; /* Fondo rojo */
+      padding: 0;
+      background: none; /* 🔹 fondo exterior transparente */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: auto; /* no cubre toda la pantalla */
     }
 
     .figura {
-      width: 300px;          /* ancho del rectángulo */
-      height: 450px;         /* alto del rectángulo */
+      width: 300px;
+      height: 450px;
       position: relative;
-      border-radius: 25px;   /* bordes curvos */
+      border-radius: 25px;
       overflow: hidden;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4); /* sombra sutil */
+      background-color: #001a66; /* 🔵 azul oscuro solo dentro */
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      margin: 0 auto;
     }
 
     .figura img {
