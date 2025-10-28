@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fondo rojo y negro</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+    }
+
+    /* Fondo degradado animado rojo y negro */
+    body {
+      background: linear-gradient(270deg, #000000, #330000, #990000, #000000);
+      background-size: 400% 400%;
+      animation: fondoMovimiento 12s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    @keyframes fondoMovimiento {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3em;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin: 0;
+      color: white;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-top: 0.5em;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Proceso por Semestre</h1>
+</body>
