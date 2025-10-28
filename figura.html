@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rectángulo azul con imágenes</title>
+  <title>Rectángulo con degradado y animación</title>
   <style>
     body {
-      margin: 20px;
-      padding: 20px;
-      background: none; /* 🔹 fondo exterior transparente */
+      margin: 0;
+      padding: 0;
+      background: none; /* fondo exterior transparente */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: auto; /* no cubre toda la pantalla */
+      height: auto;
     }
 
     .figura {
@@ -21,8 +21,9 @@
       position: relative;
       border-radius: 25px;
       overflow: hidden;
-      background-color:  #ff5c5c; /* 🔵 azul oscuro solo dentro */
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+      /* 🎨 Degradado RGB negro a rojo */
+      background: linear-gradient(180deg, rgb(0,0,0), rgb(150,0,0));
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
       margin: 0 auto;
     }
 
