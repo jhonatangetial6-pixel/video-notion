@@ -3,25 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Música al gesto — versión robusta</title>
+  <title>Música al gesto — Notion compatible</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
-    html,body{margin:0;padding:0;width:100%;height:100%;font-family:Montserrat, sans-serif;overflow-x:hidden}
+    html,body{
+      margin:0;
+      padding:0;
+      width:100%;
+      height:100%;
+      font-family:Montserrat, sans-serif;
+      overflow-x:hidden;
+    }
     .seccion{display:flex;width:100%;height:100vh}
     .negro{background:#000;color:#fff;flex:0.3;display:flex;align-items:center;justify-content:center}
     .blanco{background:#fff;flex:0.7;display:flex;align-items:center;justify-content:center}
     .contenido{height:100vh;display:flex;align-items:center;justify-content:center;background:#f5f5f5}
-    .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;padding:20px;transition:opacity .4s}
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.85);
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:20px;
+      transition:opacity .4s;
+    }
     .overlay.fade{opacity:0;pointer-events:none}
     .btn{margin-top:16px;padding:10px 18px;border-radius:8px;border:0;background:#fff;color:#000;cursor:pointer}
-    .note{opacity:.85;margin-top:10px;font-size:.9rem}
+    .note{opacity:.85;margin-top:10px;font-size:.9rem;text-align:center}
   </style>
 </head>
 <body>
   <div class="overlay" id="overlay">
-    <div>Desplázate con la rueda, haz clic o toca para activar la música 🎵</div>
+    <div>Desplázate, haz clic o toca para activar la música 🎵</div>
     <button id="btn" class="btn">Activar sonido</button>
-    <div class="note">(Si nada ocurre, prueba otro navegador. Comprueba consola devtools.)</div>
+    <div class="note">(Funciona dentro de Notion embed: mueve la rueda, haz clic o toca)</div>
   </div>
 
   <div class="seccion">
@@ -32,7 +51,6 @@
   <div class="contenido"><p>Desplázate o haz clic...</p></div>
   <div class="contenido" style="background:#ddd"><p>Sección adicional</p></div>
 
-  <!-- elemento audio -->
   <audio id="audioElem" loop preload="auto" crossorigin="anonymous">
     <source src="https://jhonatangetial6-pixel.github.io/video-notion/audio.mp3" type="audio/mpeg">
   </audio>
@@ -82,21 +100,13 @@
 
     const opts = { once: true, passive: true };
 
+    // Estos eventos sí funcionan dentro de Notion embeds
     btn.addEventListener('click', startAudio, opts);
     overlay.addEventListener('pointerdown', startAudio, opts);
     overlay.addEventListener('touchstart', startAudio, opts);
+    overlay.addEventListener('wheel', startAudio, opts);
+    overlay.addEventListener('mousewheel', startAudio, opts);
 
-    // ✅ ESCUCHA EL SCROLL REAL DEL USUARIO
-    window.addEventListener('scroll', () => startAudio(), opts);
-
-    // ✅ TAMBIÉN FUNCIONA AL MOVER LA RUEDA DEL RATÓN
-    window.addEventListener('wheel', () => startAudio(), opts);
-    window.addEventListener('mousewheel', () => startAudio(), opts);
-
-    window.addEventListener('keydown', (e) => {
-      const keys = [' ', 'Spacebar', 'ArrowDown', 'ArrowUp', 'PageDown', 'PageUp'];
-      if (keys.includes(e.key) || keys.includes(e.code)) startAudio();
-    }, opts);
   })();
   </script>
 </body>
