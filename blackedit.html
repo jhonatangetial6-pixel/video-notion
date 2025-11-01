@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fondo negro editable</title>
+
+  <!-- Fuente Montserrat desde Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000000; /* fondo negro */
+      color: white; /* texto blanco */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      font-weight: 700; /* bold */
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-top: 0.5em;
+    }
+
+    /* Hace editable el texto */
+    .editable {
+      outline: none;
+      cursor: text;
+    }
+
+    .editable:focus {
+      border-bottom: 1px dashed white;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="editable" contenteditable="true">Título editable</h1>
+  <p class="editable" contenteditable="true">Escribe aquí tu texto · Estilo Notion</p>
+</body>
+</html>
