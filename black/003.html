@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Texto · Fondo negro</title>
+  <title>Malla Ortogonal</title>
 
   <!-- Fuente Montserrat Bold -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
@@ -12,26 +12,42 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      background: transparent;
       width: 100%;
-      background-color: #000; /* Fondo negro */
-      color: #fff; /* Texto blanco */
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      height: 100%;
+      overflow: hidden; /* quita la barra de scroll */
     }
 
-    h1 {
-      font-size: 3em;
-      margin: 0;
-      letter-spacing: 2px;
+    .contenedor {
+      width: 100%;
+      height: 150px; /* Altura total */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .parte-superior {
+      background-color: #000;
+      color: #fff;
+      height: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2em;
+      letter-spacing: 1.5px;
+    }
+
+    .parte-inferior {
+      background-color: #fff;
+      height: 70%;
     }
   </style>
 </head>
 <body>
-  <h2>Malla Curva</h2>
+  <div class="contenedor">
+    <div class="parte-superior">Malla Curva</div>
+    <div class="parte-inferior"></div>
+  </div>
 </body>
 </html>
