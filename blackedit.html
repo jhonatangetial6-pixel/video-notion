@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fondo negro editable</title>
+  <title>Texto Editable · Notion</title>
 
-  <!-- Fuente Montserrat desde Google Fonts -->
+  <!-- Fuente Montserrat Bold -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
   <style>
@@ -16,33 +16,28 @@
       width: 100%;
       overflow: hidden;
       font-family: 'Montserrat', sans-serif;
-      background-color: #000000; /* fondo negro */
-      color: white; /* texto blanco */
+      background-color: #000; /* Fondo negro */
+      color: white; /* Texto blanco */
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       text-align: center;
     }
 
     h1 {
       font-size: 3em;
-      font-weight: 700; /* bold */
+      font-weight: 700;
       margin: 0;
-    }
-
-    /* Hace editable el texto */
-    .editable {
       outline: none;
       cursor: text;
     }
 
-    .editable:focus {
+    h1:focus {
       border-bottom: 1px dashed white;
     }
   </style>
 </head>
 <body>
-  <h1 class="editable" contenteditable="true">Título editable</h1>
+  <h1 contenteditable="true">Título editable en Notion</h1>
 </body>
 </html>
