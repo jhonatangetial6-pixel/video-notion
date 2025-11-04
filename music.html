@@ -1,113 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Música al gesto — Notion compatible</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reproductor rojo — Notion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    html,body{
-      margin:0;
-      padding:0;
-      width:100%;
-      height:100%;
-      font-family:Montserrat, sans-serif;
-      overflow-x:hidden;
+    body {
+      margin: 0;
+      background: #121212;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
-    .seccion{display:flex;width:100%;height:100vh}
-    .negro{background:#000;color:#fff;flex:0.3;display:flex;align-items:center;justify-content:center}
-    .blanco{background:#fff;flex:0.7;display:flex;align-items:center;justify-content:center}
-    .contenido{height:100vh;display:flex;align-items:center;justify-content:center;background:#f5f5f5}
-    .overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.85);
-      color:#fff;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-      padding:20px;
-      transition:opacity .4s;
+
+    .player {
+      width: 340px;
+      background: #181818;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .overlay.fade{opacity:0;pointer-events:none}
-    .btn{margin-top:16px;padding:10px 18px;border-radius:8px;border:0;background:#fff;color:#000;cursor:pointer}
-    .note{opacity:.85;margin-top:10px;font-size:.9rem;text-align:center}
+
+    .cover {
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .info {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .info h3 {
+      font-size: 1rem;
+      margin: 0;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #ff0000;
+      background: transparent;
+      color: #ff0000;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .play-btn:hover {
+      background: #ff0000;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .bar {
+      width: 100%;
+      height: 4px;
+      background: #333;
+      border-radius: 3px;
+      margin-top: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: #ff0000;
+      transition: width 0.3s linear;
+    }
+
+    .wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+      margin-top: 12px;
+    }
+
+    .bar-line {
+      width: 4px;
+      background: #ff0000;
+      border-radius: 2px;
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+
+    .bar-line:nth-child(2) { animation-delay: .2s; }
+    .bar-line:nth-child(3) { animation-delay: .4s; }
+
+    @keyframes bounce {
+      0%, 100% { height: 5px; }
+      50% { height: 16px; }
+    }
   </style>
 </head>
 <body>
-  <div class="overlay" id="overlay">
-    <div>Desplázate, haz clic o toca para activar la música 🎵</div>
-    <button id="btn" class="btn">Activar sonido</button>
-    <div class="note">(Funciona dentro de Notion embed: mueve la rueda, haz clic o toca)</div>
+  <div class="player">
+    <div class="cover">🎶</div>
+
+    <div class="info">
+      <h3>Reproducir música</h3>
+    </div>
+
+    <div class="controls">
+      <button id="playBtn" class="play-btn">▶</button>
+    </div>
+
+    <div class="bar"><div class="progress" id="progress"></div></div>
+    <div class="wave">
+      <div class="bar-line"></div>
+      <div class="bar-line"></div>
+      <div class="bar-line"></div>
+    </div>
   </div>
 
-  <div class="seccion">
-    <div class="negro"><h1>Malla Ortogonal</h1></div>
-    <div class="blanco"><p>70% blanco · 30% negro</p></div>
-  </div>
-
-  <div class="contenido"><p>Desplázate o haz clic...</p></div>
-  <div class="contenido" style="background:#ddd"><p>Sección adicional</p></div>
-
-  <audio id="audioElem" loop preload="auto" crossorigin="anonymous">
+  <audio id="audioElem" preload="auto" crossorigin="anonymous">
     <source src="https://jhonatangetial6-pixel.github.io/video-notion/audio.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-  (function(){
-    const audioElem = document.getElementById('audioElem');
-    const overlay = document.getElementById('overlay');
-    const btn = document.getElementById('btn');
+    const audio = document.getElementById("audioElem");
+    const playBtn = document.getElementById("playBtn");
+    const progress = document.getElementById("progress");
+    let playing = false;
 
-    let started = false;
-    let audioCtx, sourceNode, gainNode;
-
-    function setupAudioContext() {
-      if (audioCtx) return;
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      sourceNode = audioCtx.createMediaElementSource(audioElem);
-      gainNode = audioCtx.createGain();
-      gainNode.gain.value = 0;
-      sourceNode.connect(gainNode).connect(audioCtx.destination);
-    }
-
-    function fadeIn(duration = 1.2) {
-      if (!gainNode) { audioElem.volume = 1; return; }
-      const now = audioCtx.currentTime;
-      gainNode.gain.cancelScheduledValues(now);
-      gainNode.gain.setValueAtTime(0.0001, now);
-      gainNode.gain.exponentialRampToValueAtTime(1, now + duration);
-    }
-
-    async function startAudio() {
-      if (started) return;
-      setupAudioContext();
-
-      try {
-        if (audioCtx.state === 'suspended') await audioCtx.resume();
-        await audioElem.play();
-        fadeIn(1.0);
-        overlay.classList.add('fade');
-        setTimeout(()=> overlay.remove(), 500);
-        started = true;
-        console.log('🎵 Música iniciada');
-      } catch (err) {
-        console.warn('❌ Reproducción fallida:', err);
+    playBtn.addEventListener("click", async () => {
+      if (!playing) {
+        try {
+          await audio.play();
+          playBtn.textContent = "❚❚";
+          playing = true;
+        } catch (err) {
+          console.log("Error al reproducir:", err);
+        }
+      } else {
+        audio.pause();
+        playBtn.textContent = "▶";
+        playing = false;
       }
-    }
+    });
 
-    const opts = { once: true, passive: true };
-
-    // Estos eventos sí funcionan dentro de Notion embeds
-    btn.addEventListener('click', startAudio, opts);
-    overlay.addEventListener('pointerdown', startAudio, opts);
-    overlay.addEventListener('touchstart', startAudio, opts);
-    overlay.addEventListener('wheel', startAudio, opts);
-    overlay.addEventListener('mousewheel', startAudio, opts);
-
-  })();
+    audio.addEventListener("timeupdate", () => {
+      const porcentaje = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = porcentaje + "%";
+    });
   </script>
 </body>
 </html>
