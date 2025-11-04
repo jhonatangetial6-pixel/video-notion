@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escala Interactiva</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+
+    .contenedor {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .contenedor img.fondo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+
+    .escala {
+      position: absolute;
+      width: 80px;
+      height: 120px;
+      cursor: pointer;
+      background: transparent;
+      border: 2px dashed rgba(255, 0, 0, 0.8); /* 🔴 Marco punteado rojo */
+      border-radius: 8px;
+      transition: transform 0.2s, border-color 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .escala:hover {
+      transform: scale(1.1);
+      border-color: #ff0000; /* 🔴 Más brillante al pasar el mouse */
+    }
+
+    .escala img {
+      width: 70%;
+      height: auto;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <img id="imagenFondo" class="fondo" src="https://jhonatangetial6-pixel.github.io/video-notion/Sin%20t%C3%ADtulo-3_Mesa%20de%20trabajo%201.png" alt="Vista 1">
+
+    <button id="escalaBtn" class="escala" style="top: 0%; left: 45%;"></button>
+  </div>
+
+  <script>
+    const vistas = [
+      {
+        imagen: "https://jhonatangetial6-pixel.github.io/video-notion/Sin%20t%C3%ADtulo-3_Mesa%20de%20trabajo%201.png",
+        top: "0%",
+        left: "45%"
+      },
+      {
+        imagen: "https://jhonatangetial6-pixel.github.io/video-notion/vista%202.png",
+        top: "8%",
+        left: "15%"
+      }
+    ];
+
+    let indice = 0;
+    const fondo = document.getElementById("imagenFondo");
+    const escala = document.getElementById("escalaBtn");
+
+    escala.addEventListener("click", () => {
+      indice = (indice + 1) % vistas.length;
+      fondo.style.opacity = 0;
+
+      setTimeout(() => {
+        fondo.src = vistas[indice].imagen;
+        escala.style.top = vistas[indice].top;
+        escala.style.left = vistas[indice].left;
+        fondo.style.opacity = 1;
+      }, 300);
+    });
+  </script>
+</body>
+</html>
