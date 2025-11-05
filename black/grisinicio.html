@@ -14,36 +14,52 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      background-color: #666666;
+      background-color: #a0a0a0;
       color: #fff;
-      font-family: 'Montserrat', sans-serif;
+      font-family:sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
       overflow: hidden;
     }
 
+    .contenedor {
+      width: 90%;
+      height: 90%;
+      border: 2px solid #fff;
+      padding: 40px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .texto {
-      max-width: 80%;
-      font-size: 1rem;
-      line-height: 1.6;
-      letter-spacing: 1.5px;
+      text-align: justify;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      letter-spacing: 1.2px;
     }
 
     @media (max-width: 768px) {
+      .contenedor {
+        padding: 20px;
+      }
+
       .texto {
         font-size: 1rem;
-        max-width: 90%;
+        line-height: 1.6;
       }
     }
   </style>
 </head>
 <body>
-  <div class="texto">
-    Arquitecto en formación interesado en comprender cómo los espacios influyen en la vida de las personas. 
-    Me motiva el desafío de combinar creatividad y técnica para generar propuestas funcionales y estéticas. 
-    Aspiro a participar en proyectos que me permitan aprender de la práctica profesional y aportar con dedicación.
+  <div class="contenedor">
+    <div class="texto">
+      Arquitecto en formación interesado en comprender cómo los espacios influyen en la vida de las personas.
+      Me motiva el desafío de combinar creatividad y técnica para generar propuestas funcionales y estéticas.
+      Aspiro a participar en proyectos que me permitan aprender de la práctica profesional y aportar con dedicación.
+    </div>
   </div>
 </body>
 </html>
