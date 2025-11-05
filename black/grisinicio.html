@@ -14,55 +14,43 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
     }
 
     .contenedor {
-      width: 95vw;
-      height: 90vh;
+      width: 90vw;
+      max-width: 900px;
+      background-color: #979797;
       border: 2px solid #fff;
-      border-radius: 40px;
-      background-color: #8b8b8b; /* el fondo llega hasta los bordes */
-      padding: 50px;
+      border-radius: 35px;
+      padding: 40px 60px;
       box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .texto {
-      text-align: justify;
-      font-size: 1.2rem;
-      line-height: 1.8;
-      letter-spacing: 1.2px;
+      text-align: left;
+      line-height: 1.5;
+      letter-spacing: 0.2px; /* más compacto */
+      font-size: 1.1rem;
     }
 
     @media (max-width: 768px) {
       .contenedor {
-        padding: 25px;
+        width: 95vw;
+        padding: 25px 30px;
         border-radius: 25px;
-      }
-
-      .texto {
         font-size: 1rem;
-        line-height: 1.6;
       }
     }
   </style>
 </head>
 <body>
   <div class="contenedor">
-    <div class="texto">
-      Arquitecto en formación interesado en comprender cómo los espacios influyen en la vida de las personas.
-      Me motiva el desafío de combinar creatividad y técnica para generar propuestas funcionales y estéticas.
-      Aspiro a participar en proyectos que me permitan aprender de la práctica profesional y aportar con dedicación.
-    </div>
+    Arquitecto en formación interesado en comprender cómo los espacios influyen en la vida de las personas. 
+    Me motiva el desafío de combinar creatividad y técnica para generar propuestas funcionales y estéticas. 
+    Aspiro a participar en proyectos que me permitan aprender de la práctica profesional y aportar con dedicación.
   </div>
 </body>
 </html>
