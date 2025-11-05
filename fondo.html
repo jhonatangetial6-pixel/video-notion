@@ -12,21 +12,31 @@
       width: 100%;
       overflow: hidden;
       font-family: 'Poppins', sans-serif;
-      color: white;
-    }
-
-    /* Fondo degradado animado rojo y negro */
-    body {
-      background: linear-gradient(270deg, #000000, #330000, #990000, #000000);
-      background-size: 400% 400%;
-      animation: fondoMovimiento 12s ease infinite;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    /* Recuadro con fondo degradado animado */
+    .recuadro {
+      width: 400px; /* puedes ajustar el tamaño aquí */
+      height: 250px;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      width: 100vw;
-      height: 100vh;
+      border: 2px solid white;
+      color: white;
+
+      /* Fondo degradado animado */
+      background: linear-gradient(270deg, #000000, #330000, #990000, #000000);
+      background-size: 400% 400%;
+      animation: fondoMovimiento 12s ease infinite;
     }
 
     @keyframes fondoMovimiento {
@@ -36,19 +46,22 @@
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 2em;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       margin: 0;
-      color: white;
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1em;
       margin-top: 0.5em;
-      color: white;
     }
   </style>
 </head>
 <body>
-  <p>Rojo y negro · Simple y elegante</p>
+  <div class="recuadro">
+    <h1>Rojo y negro</h1>
+    <p>Simple y elegante</p>
+  </div>
+</body>
+</html>
