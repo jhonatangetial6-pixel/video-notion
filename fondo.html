@@ -3,36 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rojo y negro</title>
+  <title>Rojo y negro compacto</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
-      height: auto; /* antes era 100%, esto lo hace flexible */
-      font-family: 'Poppins', sans-serif;
+      height: 100%;
       background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Envoltorio invisible que centra el recuadro sin forzar tamaño */
+    .envoltorio {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 0;
+      height: auto;
+      padding: 0;
+      overflow: visible;
     }
 
     .recuadro {
-      width: 100%;
-      max-width: 420px;  /* límite horizontal */
-      height: auto;      /* se adapta al texto */
-      min-height: 120px; /* evita que se colapse del todo */
+      display: inline-block;
       border-radius: 25px;
-      padding: 30px;
-      box-sizing: border-box;
       border: 2px solid white;
       color: white;
       text-align: center;
-
-      /* Fondo degradado animado */
+      padding: 20px 40px;
+      box-sizing: border-box;
       background: linear-gradient(270deg, #000000, #330000, #990000, #000000);
       background-size: 400% 400%;
-      animation: fondoMovimiento 12s ease infinite;
+      animation: fondoMovimiento 10s ease infinite;
+      transform: scale(0.8); /* reduce visualmente el tamaño */
+      transform-origin: center;
     }
 
     @keyframes fondoMovimiento {
@@ -42,22 +51,23 @@
     }
 
     h1 {
-      font-size: 1.8em;
-      font-weight: 600;
-      letter-spacing: 1px;
       margin: 0;
+      font-size: 1.5em;
+      letter-spacing: 1px;
     }
 
     p {
+      margin: 0.4em 0 0;
       font-size: 1em;
-      margin-top: 0.5em;
     }
   </style>
 </head>
 <body>
-  <div class="recuadro">
-    <h1>Rojo y nelmgro</h1>
-    <p>Simple y eleganteelljkr</p>
+  <div class="envoltorio">
+    <div class="recuadro">
+      <h1>Rojo y negro</h1>
+      <p>Simple y elegante</p>
+    </div>
   </div>
 </body>
 </html>
