@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rojo y negro — ancho completo con scale</title>
+<style>
+  :root {
+    --scale: 0.60; /* ajusta aquí: 1 = 100%, 0.8 = 80% */
+    --min-height: 120px; /* altura mínima del banner */
+  }
+
+  html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Wrapper para centrar y ocultar posible overflow al escalar */
+  .wrapper {
+    width:100%;
+    display:flex;
+    justify-content:center;
+    overflow:hidden;
+  }
+
+  /* El recuadro ocupa todo el ancho visualmente, pero se escala */
+  .recuadro {
+    width:100%;
+    max-width:100vw;
+    min-height: var(--min-height);
+    box-sizing:border-box;
+    transform: scale(var(--scale));
+    transform-origin: center top;
+    /* para que el elemento escalado no genere espacio extra vertical en el wrapper */
+    display:block;
+    background: linear-gradient(270deg, #000000, #330000, #990000, #000000);
+    background-size: 400% 400%;
+    animation: fondoMovimiento 10s ease infinite;
+    color: #fff;
+    text-align:center;
+    padding: 30px 0; /* controla altura interna; combinado con --scale reducirá visualmente */
+  }
+
+  @keyframes fondoMovimiento{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+  .recuadro h1{
+    margin:0;
+    font-size:2em;
+    letter-spacing:1px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="recuadro" id="recuadro">
+      <h1>Indice</h1>
+    </div>
+  </div>
+</body>
+</html>
