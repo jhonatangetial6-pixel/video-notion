@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fondo rojo y negro</title>
+  <title>Rojo y negro</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       width: 100%;
-      overflow: hidden;
+      height: auto; /* antes era 100%, esto lo hace flexible */
       font-family: 'Poppins', sans-serif;
       background: transparent;
       display: flex;
@@ -18,20 +17,17 @@
       justify-content: center;
     }
 
-    /* Recuadro con fondo degradado animado */
     .recuadro {
-      width: 400px; /* puedes ajustar el tamaño aquí */
-      height: 250px;
+      width: 100%;
+      max-width: 420px;  /* límite horizontal */
+      height: auto;      /* se adapta al texto */
+      min-height: 120px; /* evita que se colapse del todo */
       border-radius: 25px;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      padding: 30px;
+      box-sizing: border-box;
       border: 2px solid white;
       color: white;
+      text-align: center;
 
       /* Fondo degradado animado */
       background: linear-gradient(270deg, #000000, #330000, #990000, #000000);
@@ -46,7 +42,7 @@
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
       font-weight: 600;
       letter-spacing: 1px;
       margin: 0;
