@@ -3,26 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Reproductor minimal</title>
+<title>Reproductor Notion</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  body {
+  html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
     background: transparent;
     color: #000;
     font-family: 'Montserrat', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    transform-origin: top left;
-    transform: scale(1); /* puedes ajustar (0.8, 0.6, etc.) */
   }
 
   .player {
     background: transparent;
-    border: none;
-    padding: 20px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,7 +48,6 @@
     width: 100%;
     height: 5px;
     background: #ccc;
-    margin: 10px 0 6px;
     position: relative;
     cursor: pointer;
   }
@@ -71,7 +72,6 @@
     border-radius: 50%;
     opacity: 0;
     transition: opacity 0.2s;
-    cursor: pointer;
   }
 
   .bar:hover .handle,
@@ -81,9 +81,6 @@
 
   .controls {
     margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .play-btn {
@@ -92,11 +89,6 @@
     font-size: 1.8rem;
     color: #000;
     cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .play-btn:hover {
-    transform: scale(1.2);
   }
 </style>
 </head>
@@ -116,81 +108,51 @@
     </div>
   </div>
 
-  <audio id="audioElem" preload="auto" crossorigin="anonymous" loop>
-    <source src="https://jhonatangetial6-pixel.github.io/video-notion/beatjhonce.mp3" type="audio/mpeg">
-  
-  </audio>
-
   <script>
-    const audio = document.getElementById("audioElem");
+    const audio = new Audio("https://jhonatangetial6-pixel.github.io/video-notion/AUD-20251106-WA0019.mp3");
     const playBtn = document.getElementById("playBtn");
     const progress = document.getElementById("progress");
     const bar = document.getElementById("bar");
     const handle = document.getElementById("handle");
+
     let playing = false;
     let dragging = false;
-
-    audio.volume = 0.1; // Volumen bajo (música de fondo)
+    audio.volume = 0.2;
 
     playBtn.addEventListener("click", async () => {
-      if (!playing) {
-        try {
+      try {
+        if (!playing) {
           await audio.play();
           playBtn.textContent = "❚❚";
           playing = true;
-        } catch (err) {
-          console.log("Error al reproducir:", err);
+        } else {
+          audio.pause();
+          playBtn.textContent = "▶";
+          playing = false;
         }
-      } else {
-        audio.pause();
-        playBtn.textContent = "▶";
-        playing = false;
+      } catch (err) {
+        console.log("Error al reproducir:", err);
       }
     });
 
-    // Actualiza progreso visual
     audio.addEventListener("timeupdate", () => {
       if (audio.duration && !dragging) {
-        const porcentaje = (audio.currentTime / audio.duration) * 100;
-        progress.style.width = porcentaje + "%";
-        handle.style.left = porcentaje + "%";
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = pct + "%";
+        handle.style.left = pct + "%";
       }
     });
 
-    // Click para adelantar o retroceder
     bar.addEventListener("click", (e) => {
       const rect = bar.getBoundingClientRect();
       const x = e.clientX - rect.left;
-      const porcentaje = Math.min(Math.max(x / rect.width, 0), 1);
-      audio.currentTime = porcentaje * audio.duration;
+      const pct = Math.min(Math.max(x / rect.width, 0), 1);
+      audio.currentTime = pct * audio.duration;
     });
 
-    // Arrastrar el handle
-    handle.addEventListener("mousedown", (e) => {
-      dragging = true;
-      bar.classList.add("active");
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      if (dragging) {
-        const rect = bar.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const porcentaje = Math.min(Math.max(x / rect.width, 0), 1);
-        progress.style.width = (porcentaje * 100) + "%";
-        handle.style.left = (porcentaje * 100) + "%";
-      }
-    });
-
-    document.addEventListener("mouseup", (e) => {
-      if (dragging) {
-        const rect = bar.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const porcentaje = Math.min(Math.max(x / rect.width, 0), 1);
-        audio.currentTime = porcentaje * audio.duration;
-        dragging = false;
-        bar.classList.remove("active");
-      }
-    });
+    handle.addEventListener("mousedown", () => dragging = true);
+    document.addEventListener("mouseup", () => dragging = false);
   </script>
 </body>
 </html>
+
