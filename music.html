@@ -16,7 +16,7 @@
     justify-content: center;
     height: 100vh;
     transform-origin: top left;
-    transform: scale(1); /* puedes ajustar este valor (ej. 0.5 para hacerlo más pequeño) */
+    transform: scale(1); /* puedes ajustar (0.8, 0.6, etc.) */
   }
 
   .player {
@@ -48,7 +48,7 @@
     background: #ccc;
     margin: 10px 0 6px;
     position: relative;
-    overflow: hidden;
+    cursor: pointer;
   }
 
   .progress {
@@ -58,7 +58,25 @@
     height: 100%;
     width: 0%;
     background: #000;
-    transition: width 0.3s linear;
+  }
+
+  .handle {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: #000;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+  }
+
+  .bar:hover .handle,
+  .bar.active .handle {
+    opacity: 1;
   }
 
   .controls {
@@ -88,7 +106,10 @@
       <p>REPRODUCIR CANCIÓN</p>
     </div>
 
-    <div class="bar"><div class="progress" id="progress"></div></div>
+    <div class="bar" id="bar">
+      <div class="progress" id="progress"></div>
+      <div class="handle" id="handle"></div>
+    </div>
 
     <div class="controls">
       <button id="playBtn" class="play-btn">▶</button>
@@ -96,16 +117,20 @@
   </div>
 
   <audio id="audioElem" preload="auto" crossorigin="anonymous" loop>
-    <source src="https://jhonatangetial6-pixel.github.io/video-notion/AUD-20251106-WA0019.mp3" type="audio/mpeg">
+    <source src="https://jhonatangetial6-pixel.github.io/video-notion/beatjhonce.mp3" type="audio/mpeg">
+  
   </audio>
 
   <script>
     const audio = document.getElementById("audioElem");
     const playBtn = document.getElementById("playBtn");
     const progress = document.getElementById("progress");
+    const bar = document.getElementById("bar");
+    const handle = document.getElementById("handle");
     let playing = false;
+    let dragging = false;
 
-    audio.volume = 0.1; // volumen bajo por defecto
+    audio.volume = 0.1; // Volumen bajo (música de fondo)
 
     playBtn.addEventListener("click", async () => {
       if (!playing) {
@@ -123,9 +148,48 @@
       }
     });
 
+    // Actualiza progreso visual
     audio.addEventListener("timeupdate", () => {
-      const porcentaje = (audio.currentTime / audio.duration) * 100;
-      progress.style.width = porcentaje + "%";
+      if (audio.duration && !dragging) {
+        const porcentaje = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = porcentaje + "%";
+        handle.style.left = porcentaje + "%";
+      }
+    });
+
+    // Click para adelantar o retroceder
+    bar.addEventListener("click", (e) => {
+      const rect = bar.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const porcentaje = Math.min(Math.max(x / rect.width, 0), 1);
+      audio.currentTime = porcentaje * audio.duration;
+    });
+
+    // Arrastrar el handle
+    handle.addEventListener("mousedown", (e) => {
+      dragging = true;
+      bar.classList.add("active");
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (dragging) {
+        const rect = bar.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const porcentaje = Math.min(Math.max(x / rect.width, 0), 1);
+        progress.style.width = (porcentaje * 100) + "%";
+        handle.style.left = (porcentaje * 100) + "%";
+      }
+    });
+
+    document.addEventListener("mouseup", (e) => {
+      if (dragging) {
+        const rect = bar.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const porcentaje = Math.min(Math.max(x / rect.width, 0), 1);
+        audio.currentTime = porcentaje * audio.duration;
+        dragging = false;
+        bar.classList.remove("active");
+      }
     });
   </script>
 </body>
