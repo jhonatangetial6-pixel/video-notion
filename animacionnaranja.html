@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambio automático — 11 imágenes</title>
+<style>
+  body {
+    margin: 0;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    transition: opacity 1s ease;
+  }
+
+  .fade {
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+  <img id="imagen" src="https://jhonatangetial6-pixel.github.io/video-notion/png/1naranja.png" alt="Secuencia automática">
+
+  <script>
+    // Crear el arreglo de imágenes del 1 al 11
+    const imagenes = Array.from({ length: 11 }, (_, i) => 
+      `https://jhonatangetial6-pixel.github.io/video-notion/png/${i + 1}naranja.png`
+    );
+
+    let index = 0;
+    const img = document.getElementById("imagen");
+
+    // Intervalo de cambio cada 4 segundos
+    setInterval(() => {
+      img.classList.add("fade");
+      setTimeout(() => {
+        index = (index + 1) % imagenes.length;
+        img.src = imagenes[index];
+        img.classList.remove("fade");
+      }, 1000); // transición de 1s
+    }, 4000); // 4 segundos por imagen
+  </script>
+</body>
+</html>
