@@ -1,53 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Malla Ortogonal</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rojo y negro — ancho completo</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+  }
 
-  <!-- Fuente Montserrat Bold -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  /* El recuadro ocupa todo el ancho, con fondo degradado animado */
+  .recuadro {
+    width: 100%;
+    height: 40px; /* controla la altura, puedes hacerla más o menos */
+    background: linear-gradient(270deg, #000000, #330000, #990000, #000000);
+    background-size: 400% 400%;
+    animation: fondoMovimiento 10s ease infinite;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-      width: 100%;
-      height: 100%;
-      overflow: hidden; /* quita la barra de scroll */
-    }
+  @keyframes fondoMovimiento {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-    .contenedor {
-      width: 100%;
-      height: 150px; /* Altura total */
-      display: flex;
-      flex-direction: column;
-    }
-
-    .parte-superior {
-      background-color: #000;
-      color: #fff;
-      height: 30%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 2em;
-      letter-spacing: 1.5px;
-    }
-
-    .parte-inferior {
-      background-color: #fff;
-      height: 70%;
-    }
-  </style>
+  h1 {
+    margin: 0;
+    font-size: 2em;
+    letter-spacing: 1px;
+  }
+</style>
 </head>
 <body>
-  <div class="contenedor">
-    <div class="parte-superior">Malla Diagonal</div>
-    <div class="parte-inferior"></div>
+  <div class="recuadro">
+    <h1>Malla Diagonal</h1>
+  
   </div>
 </body>
 </html>
