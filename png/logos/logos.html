@@ -19,11 +19,11 @@
     width: 80%;
     max-width: 1000px;
     position: relative;
-    overflow: visible; /* 🔥 permite que sobresalgan los logos */
+    overflow: visible;
   }
 
   .logos-wrapper {
-    overflow: visible; /* 🔥 evita recorte vertical */
+    overflow: visible;
   }
 
   .logos {
@@ -32,21 +32,22 @@
     gap: 40px;
     animation: scroll 30s linear infinite;
     position: relative;
-    overflow: visible; /* 🔥 asegura que los logos agrandados no se recorten */
+    overflow: visible;
   }
 
   .logos img {
-    width: 180px;
-    transition: transform 0.4s ease, filter 0.3s;
+    height: 70px; /* 🔸 tamaño normal */
+    width: auto;
+    transition: transform 0.4s ease, height 0.3s ease, filter 0.3s;
     cursor: pointer;
     z-index: 1;
-    transform-origin: center; /* mantiene el crecimiento centrado */
+    transform-origin: center;
   }
 
   .logos img:hover {
-    transform: scale(1.4);
+    height: 100px; /* 🔥 alcanza exactamente los 100px al agrandarse */
     filter: brightness(1.1);
-    z-index: 100; /* 🔥 se superpone correctamente */
+    z-index: 100;
   }
 
   @keyframes scroll {
@@ -68,7 +69,7 @@
         <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/6 imagen.png" alt="InDesign">
         <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/7 imagen.png" alt="Premiere Pro">
 
-        <!-- duplicado para bucle fluido -->
+        <!-- duplicado para bucle continuo -->
         <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/1 imagen.png" alt="AutoCAD">
         <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/2 imagen.png" alt="Revit">
         <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/3 imagen.png" alt="SketchUp">
