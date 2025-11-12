@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carrusel de Logos</title>
+<title>Carrusel de Logos Infinito</title>
 <style>
   body {
     margin: 0;
@@ -18,86 +18,59 @@
   .carousel {
     width: 80%;
     max-width: 1000px;
+    overflow-x: hidden;  /* Ocultamos solo lo horizontal */
+    overflow-y: visible; /* Permitimos crecer verticalmente */
     position: relative;
-    overflow: visible;
   }
 
-  .logos-wrapper {
-    overflow: visible;
-  }
-
-  .logos {
+  .track {
     display: flex;
     align-items: center;
     gap: 40px;
-    animation: scroll 15s linear infinite; /* ⚡ más rápido (antes 30s) */
-    position: relative;
-    overflow: visible;
+    animation: scroll 10s linear infinite;
+    width: max-content;
   }
 
-  .logos img {
-    height: 70px; /* tamaño base */
+  .track img {
+    height: 70px;
     width: auto;
-    transition: transform 0.4s ease, height 0.3s ease, filter 0.3s;
+    transition: transform 0.3s ease, height 0.3s ease, filter 0.3s ease;
     cursor: pointer;
-    z-index: 1;
     transform-origin: center;
   }
 
-  .logos img:hover {
-    height: 100px; /* tamaño al hacer hover */
+  .track img:hover {
+    height: 100px;
     filter: brightness(1.1);
-    z-index: 100;
+    z-index: 10;
   }
 
   @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 </style>
 </head>
 <body>
 
   <div class="carousel">
-    <div class="logos-wrapper">
-      <div class="logos">
-        <!-- 🔹 Primer ciclo -->
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/1 imagen.png" alt="AutoCAD">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/2 imagen.png" alt="Revit">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/3 imagen.png" alt="SketchUp">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/4 imagen.png" alt="Photoshop">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/5 imagen.png" alt="Illustrator">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/6 imagen.png" alt="InDesign">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/7 imagen.png" alt="Premiere Pro">
-
-        <!-- 🔹 Segundo ciclo -->
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/1 imagen.png" alt="AutoCAD">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/2 imagen.png" alt="Revit">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/3 imagen.png" alt="SketchUp">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/4 imagen.png" alt="Photoshop">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/5 imagen.png" alt="Illustrator">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/6 imagen.png" alt="InDesign">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/7 imagen.png" alt="Premiere Pro">
-
-        <!-- 🔹 Tercer ciclo -->
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/1 imagen.png" alt="AutoCAD">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/2 imagen.png" alt="Revit">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/3 imagen.png" alt="SketchUp">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/4 imagen.png" alt="Photoshop">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/5 imagen.png" alt="Illustrator">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/6 imagen.png" alt="InDesign">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/7 imagen.png" alt="Premiere Pro">
-
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/1 imagen.png" alt="AutoCAD">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/2 imagen.png" alt="Revit">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/3 imagen.png" alt="SketchUp">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/4 imagen.png" alt="Photoshop">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/5 imagen.png" alt="Illustrator">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/6 imagen.png" alt="InDesign">
-        <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/7 imagen.png" alt="Premiere Pro">
-      </div>
+    <div class="track" id="logosTrack">
+      <!-- Logos base -->
+      <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/1 imagen.png" alt="">
+      <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/2 imagen.png" alt="">
+      <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/3 imagen.png" alt="">
+      <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/4 imagen.png" alt="">
+      <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/5 imagen.png" alt="">
+      <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/6 imagen.png" alt="">
+      <img src="https://jhonatangetial6-pixel.github.io/video-notion/png/logos/7 imagen.png" alt="">
     </div>
   </div>
+
+  <script>
+    // 🔁 Duplicamos el track una sola vez, no más
+    const track = document.getElementById('logosTrack');
+    track.innerHTML += track.innerHTML;
+  </script>
 
 </body>
 </html>
